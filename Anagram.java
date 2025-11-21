@@ -27,10 +27,34 @@ public class Anagram {
 	}  
 
 	// Returns true if the two given strings are anagrams, false otherwise.
-	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
-	}
+public static boolean isAnagram(String s1, String s2) {
+
+    s1 = preProcess(s1);
+    s2 = preProcess(s2);
+
+    if (s1.length() != s2.length()) {
+        return false;
+    }
+
+    for (int i = 0; i < s1.length(); i++) {
+        char c = s1.charAt(i);
+        boolean found = false;
+
+        for (int j = 0; j < s2.length(); j++) {
+            if (c == s2.charAt(j)) {
+                s2 = s2.substring(0, j) + s2.substring(j + 1);
+                found = true;
+                break; 
+            }
+        }
+
+        if (!found) {
+            return false;
+        }
+    }
+
+    return true;
+}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
